@@ -57,7 +57,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Submit comparison data to Google Forms
             const params = new URLSearchParams();
-            params.append('entry.650268919', preferredComment);
+            params.append('entry.1820653644', currentData.method_id); // Updated field name
+            params.append('entry.1768838866', currentData.method); // Updated field name
+            params.append('entry.1213678308', preferredComment === 'comment1' ? currentData.comment1 : currentData.comment2); // Updated field name
             params.append('entry.812987669', 'YES');
             params.append('entry.1520462176', reason);
 
