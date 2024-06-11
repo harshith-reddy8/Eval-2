@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comment Evaluation</title>
+    <style>
+        /* Basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .ratings, .comparison {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form id="comment-form">
+            <div id="question-container" class="question">
+                <!-- Question will be loaded here -->
+            </div>
+            <div id="rating-container" class="ratings" style="display: none;">
+                <label>Meaningfulness: 
+                    <input type="number" id="meaningfulness" name="meaningfulness" min="1" max="5">
+                </label><br>
+                <label>Naturalness: 
+                    <input type="number" id="naturalness" name="naturalness" min="1" max="5">
+                </label><br>
+                <label>Consistency: 
+                    <input type="number" id="consistency" name="consistency" min="1" max="5">
+                </label>
+            </div>
+            <div id="comparison-container" class="comparison" style="display: none;">
+                <p id="comment1"></p>
+                <p id="comment2"></p>
+                <label>
+                    Preferred Comment:
+                    <select id="preferred-comment" name="preferred-comment">
+                        <option value="comment1">Comment 1</option>
+                        <option value="comment2">Comment 2</option>
+                    </select>
+                </label><br>
+                <label>
+                    Reason:
+                    <textarea id="reason" name="reason"></textarea>
+                </label>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

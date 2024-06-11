@@ -1,0 +1,3 @@
+{"type": "rating", "comment": "This is a sample comment.", "method": "Sample Method"}
+{"type": "rating", "comment": "Another sample comment.", "method": "Another Method"}
+{"type": "comparison", "method": "Comparison Method", "comment1": "First comment for comparison.", "comment2": "Second comment for comparison."}
