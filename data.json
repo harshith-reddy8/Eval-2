@@ -1,0 +1,15 @@
+[
+    {
+      "method_id": 1,
+      "method": "def calculate_area(length, width):\n    \"\"\"Calculates the area of a rectangle given its length and width.\n\n    Args:\n        length (float): The length of the rectangle.\n        width (float): The width of the rectangle.\n\n    Returns:\n        float: The area of the rectangle.\n    \"\"\"\n    area = length * width\n    return area",
+      "comment_1": "This function calculates the area of a rectangle given its length and width.",
+      "comment_2": "The calculate_area function takes two arguments, length and width, and returns the product of these two values, which represents the area of a rectangle."
+    },
+    {
+      "method_id": 2,
+      "method": "def reverse_string(text):\n    \"\"\"Reverses the provided string.\n\n    Args:\n        text (str): The string to be reversed.\n\n    Returns:\n        str: The reversed string.\n    \"\"\"\n    return text[::-1]",
+      "comment_1": "This function takes a string as input and returns the reverse of that string.",
+      "comment_2": "The reverse_string function reverses the order of characters in the given text string argument using Python's slice notation with a step of -1."
+    }
+  ]
+  
