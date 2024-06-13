@@ -3,66 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comment Rating</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Comment Rating Survey</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #quiz-container, #comparison-container {
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <h1>Comment Rating</h1>
     <div id="quiz-container">
+        <div id="question-container"></div>
         <form id="rating-form">
-            <div id="question-container"></div>
-            <div id="rating-container">
-                <label for="meaningfulness">Meaningfulness:</label>
-                <select id="meaningfulness" name="meaningfulness">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select><br>
-                <label for="naturalness">Naturalness:</label>
-                <select id="naturalness" name="naturalness">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select><br>
-                <label for="consistency">Consistency:</label>
-                <select id="consistency" name="consistency">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select><br>
-                <button type="button" onclick="submitRating()">Submit</button>
-                <button type="button" onclick="skipToComparison()">Submit & skip to the next section</button>
-            </div>
+            <label for="meaningfulness">Meaningfulness:</label>
+            <input type="number" id="meaningfulness" name="meaningfulness" min="1" max="5"><br>
+            <label for="naturalness">Naturalness:</label>
+            <input type="number" id="naturalness" name="naturalness" min="1" max="5"><br>
+            <label for="consistency">Consistency:</label>
+            <input type="number" id="consistency" name="consistency" min="1" max="5"><br>
+            <button type="button" onclick="submitRating()">Submit</button>
+            <button type="button" onclick="skipToComparison()">Submit & Skip to the Next Section</button>
         </form>
     </div>
-
-    <div id="comparison-container" style="display:none;">
+    <div id="comparison-container">
         <h2>Comment Comparison</h2>
         <div id="method-display"></div>
-        <div id="comment-comparison">
-            <div>
-                <h3>Comment 1</h3>
-                <p id="comment1"></p>
-            </div>
-            <div>
-                <h3>Comment 2</h3>
-                <p id="comment2"></p>
-            </div>
-        </div>
+        <p>Comment 1: <span id="comment1"></span></p>
+        <p>Comment 2: <span id="comment2"></span></p>
         <form id="comparison-form">
-            <label for="preferred-comment">Which comment do you prefer?</label><br>
-            <input type="radio" id="comment1" name="preferred-comment" value="comment_1">
-            <label for="comment1">Comment 1</label><br>
-            <input type="radio" id="comment2" name="preferred-comment" value="comment_2">
-            <label for="comment2">Comment 2</label><br>
+            <p>Which comment do you prefer?</p>
+            <input type="radio" id="preferred-comment1" name="preferred-comment" value="Comment 1">
+            <label for="preferred-comment1">Comment 1</label><br>
+            <input type="radio" id="preferred-comment2" name="preferred-comment" value="Comment 2">
+            <label for="preferred-comment2">Comment 2</label><br>
             <label for="reason">Why?</label><br>
-            <textarea id="reason" name="reason" rows="4" cols="50"></textarea><br>
+            <textarea id="reason" name="reason"></textarea><br>
             <button type="button" onclick="submitComparison()">Submit</button>
         </form>
     </div>
