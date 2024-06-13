@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
           questions = data;
           console.log('Questions loaded:', questions); // Debug statement
           loadQuestion();
+          document.getElementById('quiz-container').style.display = 'block';
       })
       .catch(error => {
           console.error('Error loading data.json:', error); // Debug statement
@@ -35,6 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const consistency = document.getElementById('consistency').value;
 
       const formData = {
+          method_id: questions[currentQuestionIndex].method_id,
           method: questions[currentQuestionIndex].method,
           comment: questions[currentQuestionIndex]['comment_2'],
           meaningfulness: meaningfulness,
@@ -44,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       console.log('Submitting', formData); // Debug statement
 
-      // Here you would send formData to Google Forms
+      submitRatingToGoogleForms(formData);
 
       currentQuestionIndex++;
       loadQuestion();
@@ -56,6 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const consistency = document.getElementById('consistency').value;
 
       const formData = {
+          method_id: questions[currentQuestionIndex].method_id,
           method: questions[currentQuestionIndex].method,
           comment: questions[currentQuestionIndex]['comment_2'],
           meaningfulness: meaningfulness,
@@ -65,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       console.log('Submitting and skipping to comparison', formData); // Debug statement
 
-      // Here you would send formData to Google Forms
+      submitRatingToGoogleForms(formData);
 
       document.getElementById('quiz-container').style.display = 'none';
       document.getElementById('comparison-container').style.display = 'block';
@@ -93,6 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const reason = document.getElementById('reason').value;
 
       const comparisonData = {
+          method_id: questions[currentQuestionIndex].method_id,
           method: questions[currentQuestionIndex].method,
           preferredComment: preferredComment,
           reason: reason
@@ -100,11 +104,56 @@ document.addEventListener('DOMContentLoaded', () => {
 
       console.log('Submitting comparison', comparisonData); // Debug statement
 
-      // Here you would send comparisonData to Google Forms
+      submitComparisonToGoogleForms(comparisonData);
 
       currentQuestionIndex++;
-      loadQuestion();
       document.getElementById('quiz-container').style.display = 'block';
       document.getElementById('comparison-container').style.display = 'none';
+      loadQuestion();
   };
+
+  function submitRatingToGoogleForms(data) {
+      const formUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSdliVnSZKsyLX1MP8VRoL5ubgxo17oLXGp1qbAl5g4LtjdSqA/formResponse';
+
+      const formData = new FormData();
+      formData.append('entry.1377370501', data.method_id); // Method ID
+      formData.append('entry.673208300', data.method); // Method
+      formData.append('entry.312816773', data.comment); // Comment
+      formData.append('entry.439694878', data.meaningfulness); // Meaningfulness
+      formData.append('entry.632744986', data.naturalness); // Naturalness
+      formData.append('entry.970049141', data.consistency); // Consistency
+
+      fetch(formUrl, {
+          method: 'POST',
+          mode: 'no-cors',
+          body: formData
+      }).then(response => {
+          console.log('Rating form submitted successfully');
+      }).catch(error => {
+          console.error('Error submitting rating form:', error);
+      });
+  }
+
+  function submitComparisonToGoogleForms(data) {
+    const formUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSfRh7Cv1hvXemEr9-wLz12qkhc0dMWRJ0gMUIejcWT_p5tZUQ/formResponse'; // Replace with your comparison form URL
+
+    const formData = new FormData();
+    formData.append('entry.698561990', data.method_id); // Method ID
+    formData.append('entry.1913479941', data.method); // Method
+    formData.append('entry.1432506270', data.comment1); // Comment 1
+    formData.append('entry.220256943', data.comment2); // Comment 2
+    formData.append('entry.944655743', data.preferredComment); // Preferred Comment (Option 1 or Option 2)
+    formData.append('entry.1260493539', data.reason); // Reason
+
+    fetch(formUrl, {
+        method: 'POST',
+        mode: 'no-cors',
+        body: formData
+    }).then(response => {
+        console.log('Comparison form submitted successfully');
+    }).catch(error => {
+        console.error('Error submitting comparison form:', error);
+    });
+}
+
 });
