@@ -11,23 +11,40 @@
             margin: 20px;
         }
         #quiz-container, #comparison-container {
+            
             display: none;
+            
         }
     </style>
 </head>
 <body>
+
     <h1>Comment Rating</h1>
     <div id="quiz-container">
         <div id="question-container"></div>
         <form id="rating-form">
             <label for="meaningfulness">Meaningfulness:</label>
-            <input type="number" id="meaningfulness" name="meaningfulness" min="1" max="5"><br>
+            <input type="number" id="meaningfulness" name="meaningfulness" min="1" max="5" step="1" required><br>
             <label for="naturalness">Naturalness:</label>
-            <input type="number" id="naturalness" name="naturalness" min="1" max="5"><br>
+            <input type="number" id="naturalness" name="naturalness" min="1" max="5" step="1" required><br>
             <label for="consistency">Consistency:</label>
-            <input type="number" id="consistency" name="consistency" min="1" max="5"><br>
+            <input type="number" id="consistency" name="consistency" min="1" max="5" step="1" required><br>
             <button type="button" onclick="submitRating()">Submit</button>
             <button type="button" onclick="skipToComparison()">Submit & Skip to the Next Section</button>
+            <button type="button" id="skip-question" onclick="skipQuestion()">Skip Question</button>
+            <button type="button" onclick="skipToComparison()">Skip & Move to Next Section</button>
+            <div id="rating-instructions">
+                <p><strong>Welcome to the Comment Rating!</strong></p>
+                <p>In this section, you will review a code snippet and a comment below the code, provide feedback based on specific criteria. Please follow the instructions below:</p>
+                <ul>
+                    <li>Review the code snippet carefully.</li>
+                    <li>Provide a rating from 1 to 5, with 1 being the lowest and 5 being the highest.</li>
+                </ul>
+                <p>If you wish to skip this section, click on the "Skip" button.</p>
+                <p>If you want to move directly to the next section without submitting a rating, click on the "Skip & Move to Next Section" button.</p>
+                <p>If you want to submit your rating and then proceed to the next section, click on the "Submit & Skip to the Next Section" button.</p>
+            </div>
+
         </form>
     </div>
     <div id="comparison-container">
@@ -44,6 +61,8 @@
             <label for="reason">Why?</label><br>
             <textarea id="reason" name="reason"></textarea><br>
             <button type="button" onclick="submitComparison()">Submit</button>
+            <button type="button" onclick="skipComparison()">Skip & Finish</button>
+            <button type="button" onclick="submitAndFinish()">Submit & Finish</button>
         </form>
     </div>
     <script src="script.js"></script>
